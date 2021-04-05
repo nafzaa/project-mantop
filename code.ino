@@ -1,36 +1,26 @@
-/*********
-  Rui Santos
-  Complete project details at https://randomnerdtutorials.com  
-*********/
-
+#include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+#define OLED_RESET 4
+Adafruit_SSD1306 display(OLED_RESET);
 
-// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
-void setup() {
-  Serial.begin(115200);
-
-  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3D for 128x64
-    Serial.println(F("SSD1306 allocation failed"));
-    for(;;);
-  }
-   
-}
-
-void loop() {
-  delay(2000);
+void setup() 
+{
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   display.clearDisplay();
 
+}
+
+void loop() 
+{
   display.setTextSize(2);
   display.setTextColor(WHITE);
-  display.setCursor(30, 10);
-  // Display static text
-  display.println("NIK AHMAD FAIZAL");
-  display.display(); 
+  display.setCursor(0,0);
+  display.println("Subscribe Now!");
+  display.display();
+
+
 }
